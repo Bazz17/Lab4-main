@@ -1,0 +1,21 @@
+{% extends "base_generic.html" %}
+{% block content %}
+<h1>Badges</h1>
+<a href="{% url 'badge-create' %}">Create New Badge</a>
+<form method="get">
+    <input type="text" name="q" placeholder="Search badges..." value="{{ request.GET.q }}">
+    <button type="submit">Search</button>
+</form>
+
+<ul>
+{% for badge in badges %}
+    <li>
+        <a href="{% url 'badge-detail' badge.pk %}">
+            {{ badge.name }} - {{ badge.criteria }}
+        </a>
+    </li>
+{% empty %}
+    <li>No badges found.</li>
+{% endfor %}
+</ul>
+{% endblock %}

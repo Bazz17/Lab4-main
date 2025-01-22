@@ -1,0 +1,21 @@
+{% extends "base_generic.html" %}
+{% block content %}
+<h1>Goals</h1>
+<a href="{% url 'goal-create' %}">Create New Goal</a>
+<form method="get">
+    <input type="text" name="q" placeholder="Search goals..." value="{{ request.GET.q }}">
+    <button type="submit">Search</button>
+</form>
+
+<ul>
+{% for goal in goals %}
+    <li>
+        <a href="{% url 'goal-detail' goal.pk %}">
+            {{ goal.user.username }} - {{ goal.description }} (Target: {{ goal.target_date }})
+        </a>
+    </li>
+{% empty %}
+    <li>No goals found.</li>
+{% endfor %}
+</ul>
+{% endblock %}

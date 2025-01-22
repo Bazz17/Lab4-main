@@ -1,0 +1,10 @@
+{% extends "base_generic.html" %}
+{% block content %}
+<h1>User Habit Details</h1>
+<p>User: {{ user_habit.user.username }}</p>
+<p>Habit: {{ user_habit.habit.name }}</p>
+<p>Frequency: {{ user_habit.frequency }}</p>
+<p>Start Date: {{ user_habit.start_date }}</p>
+<p>End Date: {{ user_habit.end_date|default:"N/A" }}</p>
+<a href="{% url 'userhabit-list' %}">Back to User Habits</a>
+{% endblock %}

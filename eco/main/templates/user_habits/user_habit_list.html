@@ -1,0 +1,21 @@
+{% extends "base_generic.html" %}
+{% block content %}
+<h1>User Habits</h1>
+<a href="{% url 'user_habit-create' %}">Assign New Habit</a>
+<form method="get">
+    <input type="text" name="q" placeholder="Search user habits..." value="{{ request.GET.q }}">
+    <button type="submit">Search</button>
+</form>
+
+<ul>
+{% for user_habit in user_habits %}
+    <li>
+        <a href="{% url 'userhabit-detail' user_habit.pk %}">
+            {{ user_habit.user.username }} - {{ user_habit.habit.name }} ({{ user_habit.frequency }})
+        </a>
+    </li>
+{% empty %}
+    <li>No user habits found.</li>
+{% endfor %}
+</ul>
+{% endblock %}

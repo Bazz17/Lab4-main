@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Eco app{% endblock %}</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <header>
+        <h1>Welcome to My Django App</h1>
+        <nav>
+            <ul>
+                <li><a href="{% url 'home' %}">Home</a></li>
+                {% if user.is_authenticated %}
+                    <form method="POST" action="{% url 'logout' %}">
+                        {% csrf_token %}
+                        <button type="submit">Odjava</button>
+                    </form>
+                {% else %}
+                    <li><a href="{% url 'login' %}">Prijava</a></li>
+                    <li><a href="{% url 'register' %}">Registracija</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        {% block content %}      
+        {% endblock %}
+    </main>
+
+    <footer>
+        <p>&copy; 2024 PZW Ivan Bazina</p>
+    </footer>
+</body>
+</html>

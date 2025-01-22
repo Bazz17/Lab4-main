@@ -1,0 +1,21 @@
+{% extends "base_generic.html" %}
+{% block content %}
+<h1>Activity Logs</h1>
+<a href="{% url 'activity_log-create' %}">Create New Activity Log</a>
+<form method="get">
+    <input type="text" name="q" placeholder="Search activity logs..." value="{{ request.GET.q }}">
+    <button type="submit">Search</button>
+</form>
+
+<ul>
+{% for activity_log in activity_logs %}
+    <li>
+        <a href="{% url 'activitylog-detail' activity_log.pk %}">
+            {{ activity_log.user_habit.user.username }} - {{ activity_log.date }} ({{ activity_log.completed|yesno:"Completed,Missed" }})
+        </a>
+    </li>
+{% empty %}
+    <li>No activity logs found.</li>
+{% endfor %}
+</ul>
+{% endblock %}

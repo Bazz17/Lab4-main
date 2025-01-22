@@ -1,0 +1,9 @@
+{% extends "base_generic.html" %}
+{% block content %}
+<h1>{{ tip.title }}</h1>
+<p>{{ tip.content }}</p>
+<p>Published on: {{ tip.published_date }}</p>
+<a href="{% url 'tip-update' tip.id %}">Edit</a>
+<a href="{% url 'tip-delete' tip.id %}">Delete</a>
+<a href="{% url 'tip-list' %}">Back to Tips</a>
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends "base_generic.html" %}
+{% block content %}
+<h1>Tips</h1>
+<a href="{% url 'tip-create' %}">Create New Tip</a>
+<form method="get">
+    <input type="text" name="q" placeholder="Search tips..." value="{{ request.GET.q }}">
+    <button type="submit">Search</button>
+</form>
+
+<ul>
+{% for tip in tips %}
+    <li>
+        <a href="{% url 'tip-detail' tip.pk %}">{{ tip.title }}</a>
+    </li>
+{% empty %}
+    <li>No tips found.</li>
+{% endfor %}
+</ul>
+{% endblock %}

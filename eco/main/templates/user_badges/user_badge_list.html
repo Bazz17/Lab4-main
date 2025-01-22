@@ -1,0 +1,21 @@
+{% extends "base_generic.html" %}
+{% block content %}
+<h1>User Badges</h1>
+<a href="{% url 'user_badge-create' %}">Create New Badge</a>
+<form method="get">
+    <input type="text" name="q" placeholder="Search user badges..." value="{{ request.GET.q }}">
+    <button type="submit">Search</button>
+</form>
+
+<ul>
+{% for user_badge in user_badges %}
+    <li>
+        <a href="{% url 'userbadge-detail' user_badge.pk %}">
+            {{ user_badge.user.username }} - {{ user_badge.badge.name }}
+        </a>
+    </li>
+{% empty %}
+    <li>No user badges found.</li>
+{% endfor %}
+</ul>
+{% endblock %}

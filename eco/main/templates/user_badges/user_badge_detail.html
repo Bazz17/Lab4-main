@@ -1,0 +1,10 @@
+{% extends "base_generic.html" %}
+{% block content %}
+<h1>User Badge Details</h1>
+<p>User: {{ user_badge.user.username }}</p>
+<p>Badge: {{ user_badge.badge.name }}</p>
+<p>Awarded Date: {{ user_badge.awarded_date }}</p>
+<a href="{% url 'user_badge-update' user_badge.id %}">Edit</a>
+<a href="{% url 'user_badge-delete' user_badge.id %}">Delete</a>
+<a href="{% url 'userbadge-list' %}">Back to User Badges</a>
+{% endblock %}
