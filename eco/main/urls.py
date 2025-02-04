@@ -38,6 +38,13 @@ urlpatterns = [
     
     path('api/', include(router.urls)),  # Dodavanje API ruta za prethodno registrirane modele iznad
 
+    path('habits/', HabitListView.as_view(), name='habit_list'),
+    path('goals/', GoalListView.as_view(), name='goal_list'),
+    path('tips/', TipListView.as_view(), name='tip_list'),
+    path('badges/', BadgeListView.as_view(), name='badge_list'),
+    path('activity-log/', ActivityLogListView.as_view(), name='activity_log_list'),
+
+
     # Habit
     path('habits/', HabitListView.as_view(), name='habit-list'),
     path('habits/<int:pk>/', HabitDetailView.as_view(), name='habit-detail'),
